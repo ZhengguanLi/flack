@@ -1,0 +1,181 @@
+/* navbar */
+#profile-list{
+    float:right;
+}
+
+.navbar-nav li{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* input */
+#input button, #input input{
+    height: 35px;
+}
+
+#input{
+    margin-top: 20px;
+}
+  
+/* table */
+table{
+    display: block;
+    margin-top: 30px;
+    border:1px red solid;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#user-table thead{
+    background:url('/static/images/background/Hiker\ Man\ Head.svg');
+    background-size:cover;  
+}
+
+#user-table tbody{
+    background:url('/static/images/background/Hiker\ Man\ Body.svg');
+    background-size:cover;  
+}
+
+#channel-table thead{
+    background:url('/static/images/background/Hiker\ Woman\ Head.svg');
+    background-size:cover;  
+}
+
+#channel-table tbody{
+    background:url('/static/images/background/Hiker\ Woman\ Body.svg');
+    background-size:cover;  
+}
+
+#message-table{
+    background:url('/static/images/background/Camping.svg');
+    background-size:cover;  
+}
+
+#people:hover, #channel:hover{
+    background-color: coral;
+}
+
+#user-list a:hover, #channel-list a:hover{
+    background-color: green;
+}
+
+thead, tbody, tr{
+  display: block;
+}
+
+thead a{
+    color: black;
+}
+
+thead, #user-list tr, #channel-list tr{
+    text-align: center;
+}
+
+#user-list a, #channel-list a, .message-header{
+    color: blue;
+}
+
+#user-table a, #channel-table a{
+    display: block;
+}
+
+#channel-list{
+    display: none;
+}
+
+/* delete message animation */
+@keyframes hide{
+    0%{
+        opacity: 1;
+    }
+    75%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 0;
+        line-height: 0px;
+    }
+}
+
+tr{
+    display: table;
+    table-layout: fixed;
+    width:100%;
+    animation-name: hide;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+tbody{
+    overflow:auto;
+    height:500px;
+    padding: 0pt;
+    text-align: left;
+    list-style-type: none;
+    overflow-wrap: break-word;
+}
+
+.content{
+    padding-left: 20px;
+}
+
+.micro-anchor, .trash-anchor{
+    color: black;
+    float: right;
+    padding-right: 10px;
+}
+
+/* music dropdown menu*/
+#music-check-icon{
+    float: right;
+}
+
+/* QR Code */
+/* Add styles to the form container */
+.form-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+}
+
+.form-container {
+    max-width: 200px;
+    padding: 10px;
+}
+
+.form-container .btn {
+    background-color: #4CAF50;
+    padding: 16px 15px;
+    border: none;
+    cursor: pointer;
+    width: 180px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+}
+
+.open-button {
+    background-color: #555;
+    padding: 16px 15px;
+    border: none;
+    cursor: pointer;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 180px;
+    opacity: 0.8;
+}
+
+#QRCode{
+    width: 200px;
+    padding: 0px;
+    right: 15px;
+}

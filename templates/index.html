@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %} Flack {% endblock %}
+
+{% block body %} 
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="active">
+            <div class="sidebar-header text-center">
+                <h3>Welcome <i class="fas fa-meteor"></i></h3>
+            </div>
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="#">Portfolio</a>
+                </li>
+                <li>
+                    <a href="#joinSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">Join</a>
+                    <ul class="collapse show list-unstyled" id="joinSubmenu">
+                        <li>
+                            <div class="text-center">
+                                <form action="{{ url_for('index') }}" method="post">
+                                    <input type='text' class="form-control col-md-10 offset-1" id="username" name="username" placeholder="Enter Username..." autofocus autocomplete=off required>
+                                    <button id="go-chat-btn" class="btn btn-success mt-3" type="submit">Go Chat <i class="far fa-paper-plane"></i></button>
+                                </form>
+                                <p id="username-existed" class="notice">
+                                    Username is already taken!
+                                </p>
+                                <p id="username-long" class="notice">
+                                    Username is too long!
+                                </p>
+                            </div>
+                        </li>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Join Flack</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </div>
+{% endblock %}
+

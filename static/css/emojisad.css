@@ -1,0 +1,180 @@
+.face__sad {
+    animation: sad-look 5s infinite;
+}
+
+.head {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: auto;
+    width: 250px;
+    height: 250px;
+    background-color: #FFEB97;
+    border-radius: 50%;
+    position: relative;
+}
+
+.face {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: auto;
+    width: 250px;
+    height: 250px;
+    position: relative;
+}
+
+.face__sad .eye-left {
+    width: 25px;
+    height: 25px;
+    background-color: #000;
+    border-radius: 50%;
+    top: 150px;
+    left: 45px;
+    position: absolute;
+    animation: blink 5s infinite;
+    animation-delay: 3.7s;
+}
+
+.face__sad .eye-right {
+    width: 25px;
+    height: 25px;
+    background-color: #000;
+    border-radius: 50%;
+    top: 150px;
+    right: 45px;
+    position: absolute;
+    animation: blink 5s infinite;
+    animation-delay: 3.7s;
+}
+
+.face__sad .mouth {
+    width: 100px;
+    height: 50px;
+    border-style: solid;
+    border-radius: 50%;
+    border-width: 8px;
+    border-color: #000 transparent transparent transparent;
+    left: 68px;
+    top: 186px;
+    position: absolute;
+    animation: sad-mouth 5s infinite;
+}
+
+@keyframes blink {
+    0% {
+        transform: scale(1, 1);
+    }
+
+    10% {
+        transform: scale(1, 1);
+    }
+
+    12% {
+        transform: scale(1, .1);
+    }
+
+    14% {
+        transform: scale(1, 1);
+    }
+
+    30% {
+        transform: scale(1, 1);
+    }
+
+    32% {
+        transform: scale(1, .1);
+    }
+
+    34% {
+        transform: scale(1, 1);
+    }
+
+    60% {
+        transform: scale(1, 1);
+    }
+
+    62% {
+        transform: scale(1, .1);
+    }
+
+    64% {
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes sad-look {
+    0% {
+        transform: translate(0px, 0px);
+    }
+
+    15% {
+        transform: translate(0px, 0px);
+    }
+
+    25% {
+        transform: translate(0px, -25px);
+    }
+
+    35% {
+        transform: translate(0px, -25px);
+    }
+
+    45% {
+        transform: translate(0px, 0px);
+    }
+
+    70% {
+        transform: translate(0px, 0px);
+    }
+
+    80% {
+        transform: translate(-15px, -25px);
+    }
+
+    90% {
+        transform: translate(-15px, -25px);
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+    }
+}
+
+@keyframes sad-mouth {
+    0% {
+        height: 25px;
+    }
+
+    15% {
+        height: 25px;
+    }
+
+    25% {
+        height: 50px;
+    }
+
+    35% {
+        height: 50px;
+    }
+
+    45% {
+        height: 25px;
+    }
+
+    70% {
+        height: 25px;
+    }
+
+    80% {
+        height: 50px;
+    }
+
+    90% {
+        height: 50px;
+    }
+
+    100% {
+        height: 25px;
+    }
+}

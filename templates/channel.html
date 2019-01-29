@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<head>
+    <title>Flack</title>
+    <link rel="stylesheet" href="/static/css/channel.css">
+    <link rel="stylesheet" href="/static/css/successCheckAnimation.css">   
+    <link rel="stylesheet" href="/static/css/emojisad.css">     
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" aria-hidden="true"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/channel.js"></script>
+
+    <!-- for emoji -->
+    <link rel="stylesheet" href="/static/css/emojionearea.min.css">
+    <script type="text/javascript" src="/static/js/emojionearea.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>         
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Flack</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" id='home' href="{{ url_for('quit') }}">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id='new-channel' href="javascript:;" onclick="$('#exampleModal').modal('show');">New Channel</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="javascript:;" id="easter-egg">Ester Egg</a>
+                </li>
+                <li class="nav-item dropdown active">                    
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;">Music</a>
+                    <div class="dropdown-menu" id="music-dropdown-menu">
+                        <a class="dropdown-item music-change" id="none" href="javascript:;">
+                            None <i class="fas fa-check-circle" id="music-check-icon"></i>
+                        </a>
+                        <a class="dropdown-item music-change" id="best-day" href="javascript:;">Best Day </a>
+                        <a class="dropdown-item music-change" id="okamochi" href="javascript:;">Okamochi </a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="nav-item dropdown pull-right active" id="profile-list">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img src="/static/images/profile/{{ profile_src }}.jpg" width="30" height="30" alt="profile-pic" id="profile-pic">
+                        <span id='profile'>{{ username }}</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" id="update-profile-pic" href="javascript:;">Update profile picture</a>
+                        <a class="dropdown-item" id="quit" href="{{ url_for('quit') }}">Sign out</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button type="button" class="btn btn-outline-success my-2 my-sm-0" id="search">Search</button>
+            </form>
+        </div>
+    </nav>
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New channel</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="new-channel-form">
+                    <div class="modal-body">
+                        <label for="message-text" class="col-form-label">Channel name:</label>
+                        <input class="form-control" id="new-channel-name" placeholder="e.g. Project" autocomplete="off"></input>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="congrats" tabindex="-1" role="dialog" aria-labelledby="congratsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="congratsModalLabel">Congrats</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <!-- success check animation -->
+                    <div class="check_mark">
+                        <div class="sa-icon sa-success animate">
+                            <span class="sa-line sa-tip animateSuccessTip"></span>
+                            <span class="sa-line sa-long animateSuccessLong"></span>
+                            <div class="sa-placeholder"></div>
+                            <div class="sa-fix"></div>
+                        </div>
+                    </div>
+                    Channel create successfully!
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="channelRepeatModal" tabindex="-1" role="dialog" aria-labelledby="channelRepeatModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="channelRepeatModalLabel">Oops!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <div class="head">
+                        <div class="face face__sad">
+                            <div class="eye-left"></div>
+                            <div class="eye-right"></div>
+                            <div class="mouth"></div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px;">Channel name exsited already!</div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="retry">Retry</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class='container'>
+        <div class="row">
+            <div class="col-md-2">
+                <!-- user table -->
+                <table class="table table-hover table-light table-sm table-striped" id="user-table" style="display: block;">
+                    <thead>
+                        <tr>
+                            <th><a href="javascript:;" id="people">People</a></th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-list">
+                        <tr>
+                            <td class="user">
+                                <a href="javascript:;" class="username">
+                                    <span>{{ username }}</span> (Me)
+                                    <span class="badge badge-success" hidden>0</span>
+                                </a>
+                            </td>
+                        </tr>
+                        {% for name in usernames %}
+                        {% if name != username %}
+                        <tr>
+                            <td class="user">
+                                <a href="javascript:;" class="username">
+                                    <span>{{ name }} </span> 
+                                    <span class="badge badge-success" hidden>0</span>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+                <!-- Channel table -->
+                <table class="table table-hover table-light table-sm table-striped" id="channel-table">
+                    <thead>
+                        <tr>
+                            <th><a href="javascript:;" id="channel">Channel</a></th>
+                        </tr>
+                    </thead>
+                    <tbody id="channel-list">
+                        {% for channel_name in channel_names %}
+                        <tr>
+                            <td>
+                                <a href="javascript:;" class="channel-name">
+                                    <span>{{ channel_name }} </span>
+                                    <span class="badge badge-success" hidden>0</span>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class='container col-md-10'>
+                <div class="row">
+                    <!-- message table-->
+                    <table class="table table-hover table-light table-sm table-striped" id="message-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <span id="chat-type">Channel</span>
+                                    <span id="chat-name">Welcome</span>
+                                    <a href="javascript:;">
+                                        <i class="fas fa-broom clear" style="display: inline-block;"></i>
+                                    </a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="message-list">
+                            {% for h in headers %}
+                            <tr class="message-tr">
+                                <td class="message-header">
+                                    <img src="{{ profile_pics[loop.index0] }}" width="30" height="30" alt="profile-pic">
+                                    {{ h }}
+                                    <a href="javascript:;" class="trash-anchor">
+                                        <i class="fas fa-trash-alt trash-icon"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% if content[loop.index0] is mapping %}
+                            <td class="message-content">
+                                <a href="{{ content[loop.index0]['file_base64'] }}" download="{{ content[loop.index0]['filename'] }}" id="download">
+                                    <span class="content">Download: {{ content[loop.index0]['filename'] }} ({{ content[loop.index0]['filesize'] }})</span>
+                                    <a href="javascript:;" class="micro-anchor">
+                                        <i class="fas fa-microphone-alt micro-icon"></i>
+                                    </a>
+                                </a>
+                            </td>
+                            {% else %}
+                            <tr class="message-tr">
+                                <td class="message-content">
+                                    <span class="content">{{ content[loop.index0] }}</span>
+                                    <a href="javascript:;" class="micro-anchor">
+                                        <i class="fas fa-microphone-alt micro-icon"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div class="container" id="input">
+                        <div class="row">
+                            <button type="button" class="btn btn-primary col-md-1 offset-md-1" id="file-btn">File</button>
+                            <form id="message-form" class="form col-md-8">
+                                <input type="text" class="form-control" id="message" name="message" aria-describedby="basic-addon1" autofocus autocomplete="off">
+                            </form>
+                            <button type="button" class="btn btn-primary col-md-1" id="send">Send <i class="far fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#message").emojioneArea({
+                        pickerPosition: "top",
+                        filtersPosition: "top",
+                        placeholder: "Type a message",
+                        searchPlaceholder: "Search",
+                        inline: true,
+                        tones: false,
+                        textcomplete: {
+                            maxCount: 3,
+                            placement: 'top'
+                        },
+                        events: {
+                            keyup: function (editor, event) {
+                                if ($("#message")[0].emojioneArea.getText().trim().length <= 0) {
+                                    document.querySelector("#send").disabled = true;
+                                } else {
+                                    document.querySelector("#send").disabled = false;
+                                }
+                                if (event.which == 13) {
+                                    if ($("#message")[0].emojioneArea.getText().trim().length > 0) {
+                                        $("#message-form").submit();
+                                    }
+                                }
+
+                            },
+                        }
+                    });
+                });
+            </script>
+
+            <!-- upload file -->
+            <label for="file-input" id="file-label" hidden></label>
+            <input type='file' id="file-input" hidden/>
+        </div>
+    </div>
+
+    <audio class="music" id="music-best-day" src="/static/music/Best Day of My Life.mp3" loop hidden>
+        Your browser does not support the audio tag.
+    </audio>
+    <audio class="music" id="music-okamochi" src="/static/music/Okamochi Jersey.mp3" loop hidden>
+        Your browser does not support the audio tag.
+    </audio>
+
+    <!-- Wechat QR Code-->
+    <button class="open-button" onclick="openForm()">Add Me</button>
+    <div class="form-popup" id="myForm">
+        <form class="form-container">
+            <img src="/static/images/QR-code.jpg" alt="QRCode" id="QRCode">
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+    </div>
+</body>
+</html>
