@@ -1,6 +1,6 @@
 # Flack
 
-This is an online messaging service web page using Flask, similar in spirit to [Slack](https://slack.com/). Users will be able to sign into your site with a display name, create channels (i.e. chatrooms) to communicate in, as well as see and join existing channels. Once a channel is selected, users will be able to send and receive messages with one another in real time. Finally, add a personal touch to your chat application! 
+This is an online messaging service web page using Flask, similar in spirit to [Slack](https://slack.com/). Users will be able to sign into your site with a display name, create channels (i.e. chatrooms) to communicate in, as well as see and join existing channels. Once a channel is selected, users will be able to send and receive messages with one another in real time. Also, user can have personal touch in this chat application! 
 
 ### Preview:
 
