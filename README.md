@@ -11,6 +11,7 @@ This is an online messaging service web page using Flask, similar in spirit to [
 [Live Demo](http://chat-ya.herokuapp.com)
 
 ### Features
+
 - Channel chat
 
     ![channel_chat_image](channel_chat.jpg)
@@ -76,15 +77,17 @@ web: gunicorn --worker-class eventlet -w 1 application:app
 - Messages are coming from top rather than from bottom
 - Better visual support for mobile device
 
-## More features:
+## More features expected
 
 - User typing detection 
 - Send voice message
 - Url/Email detection
 
 ## Contribution
+
 Emoji support: [EmojioneArea](https://github.com/mervick/emojionearea)
 
-## Author
-* **Zhengguan Li**
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
