@@ -74,13 +74,13 @@ web: gunicorn --worker-class eventlet -w 1 application:app
 ## Known Issues
 
 - Messages are coming from top rather than from bottom
-- Better support for mobile device
+- Better visual support for mobile device
 
 ## More features:
 
-- User live typing detection 
+- User typing detection 
 - Send voice message
-- Search functionality
+- Url/Email detection
 
 ## Contribution
 Emoji support: [EmojioneArea](https://github.com/mervick/emojionearea)
